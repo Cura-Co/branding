@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.cura-co.com/brand-identity/v1",
   "meta": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "lastUpdated": "2026-05-01",
     "maintainer": "dan@cura-co.com",
     "purpose": "Canonical brand-identity reference for agents, partners, and internal teams working with CURA."
@@ -180,6 +180,56 @@
         "heroGlow": "radial-gradient(ellipse at center top, rgba(59,130,246,0.15) 0%, transparent 60%)",
         "cardShine": "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%)",
         "ctaButton": "linear-gradient(135deg, #3B82F6, #2563EB)"
+      },
+
+      "lightMode": {
+        "description": "Color overrides for light-mode contexts. Accent, semantic, and chart palettes remain identical; only foundation, text, shadow, and gradient tokens change.",
+        "foundation": {
+          "background": {
+            "hex": "#F1F5F9",
+            "role": "Primary page and app background — light blue-gray"
+          },
+          "surface": {
+            "hex": "#FFFFFF",
+            "role": "Card and panel backgrounds — white"
+          },
+          "surfaceElevated": {
+            "hex": "#FFFFFF",
+            "role": "Elevated containers, modals — white with stronger shadow"
+          },
+          "border": {
+            "hex": "#E2E8F0",
+            "role": "Subtle borders and dividers between sections"
+          },
+          "borderLight": {
+            "hex": "#CBD5E1",
+            "role": "More visible borders for interactive elements"
+          }
+        },
+        "text": {
+          "primary": {
+            "hex": "#0F172A",
+            "role": "Headings and primary body copy — near-black"
+          },
+          "secondary": {
+            "hex": "#475569",
+            "role": "Supporting text, labels, meta information"
+          },
+          "muted": {
+            "hex": "#94A3B8",
+            "role": "Placeholder text, disabled states, tertiary labels"
+          }
+        },
+        "gradients": {
+          "heroGlow": "radial-gradient(ellipse at center top, rgba(59,130,246,0.08) 0%, transparent 60%)",
+          "cardShine": "linear-gradient(135deg, rgba(59,130,246,0.02) 0%, transparent 50%)",
+          "ctaButton": "linear-gradient(135deg, #3B82F6, #2563EB)"
+        },
+        "shadows": {
+          "card": "0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)",
+          "elevated": "0 4px 12px rgba(0,0,0,0.12)",
+          "glow": "0 0 30px rgba(59,130,246,0.12)"
+        }
       }
     },
 
@@ -224,6 +274,13 @@
   },
 
   "uiPatterns": {
+    "theming": {
+      "defaultMode": "dark",
+      "persistenceKey": "cura-theme",
+      "darkMode": "Primary product experience — near-black backgrounds with vivid accents. Used in the Command Centre platform.",
+      "lightMode": "Used on the marketing site and as an optional platform preference. White card surfaces on a light blue-gray (#F1F5F9) background.",
+      "systemFallback": "Respect prefers-color-scheme on first visit; default to dark if not set."
+    },
     "navigation": {
       "style": "Collapsible left sidebar on the platform; top navbar on the marketing site",
       "sidebarSections": ["Command Centre", "Acquire", "Convert", "Deliver", "Support", "Measure", "Team & Ops", "Admin"],

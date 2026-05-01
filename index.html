@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CURA Brand Kit</title>
+  <meta name="description" content="CURA brand identity — colors, typography, components, and voice guidelines." />
+
+  <!-- Flash-free theme init: runs before CSS parses -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('cura-theme');
+      var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved || sys);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Brand tokens — dark (default) ──────────────────────── */
+    :root {
+      /* Foundation */
+      --bg:              #080C14;
+      --surface:         #0D1320;
+      --surface-el:      #111827;
+      --border:          #1E293B;
+      --border-lt:       #2A3A52;
+
+      /* Text */
+      --tx-primary:   #F1F5F9;
+      --tx-secondary: #94A3B8;
+      --tx-muted:     #64748B;
+
+      /* Accent — same both modes */
+      --accent:       #3B82F6;
+      --accent-hover: #2563EB;
+      --teal:         #14B8A6;
+      --cyan:         #06B6D4;
+
+      /* Semantic — same both modes */
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --error:   #EF4444;
+
+      /* Logo palette */
+      --logo-blue:  #1E5FAE;
+      --logo-cyan:  #4FC3F7;
+      --logo-navy:  #0A2E6B;
+
+      /* Gradients */
+      --grad-cta:        linear-gradient(135deg, #3B82F6, #2563EB);
+      --grad-hero-glow:  radial-gradient(ellipse at center top, rgba(59,130,246,0.15) 0%, transparent 60%);
+      --grad-card-shine: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+
+      /* Shadows */
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03);
+      --shadow-el:   0 4px 12px rgba(0,0,0,0.4);
+      --shadow-glow: 0 0 30px rgba(59,130,246,0.15);
+
+      /* Misc */
+      --row-border:  rgba(30,41,59,0.5);
+      --grid-line:   rgba(30,41,59,0.35);
+      --nav-bg:      rgba(8,12,20,0.88);
+
+      /* Radius */
+      --r-sm:   0.375rem;
+      --r-md:   0.5rem;
+      --r-lg:   0.75rem;
+      --r-pill: 9999px;
+
+      /* Type */
+      --font:  'Inter', system-ui, -apple-system, sans-serif;
+      --mono:  'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    /* ── Light mode overrides ────────────────────────────────── */
+    [data-theme="light"] {
+      --bg:          #F1F5F9;
+      --surface:     #FFFFFF;
+      --surface-el:  #FFFFFF;
+      --border:      #E2E8F0;
+      --border-lt:   #CBD5E1;
+
+      --tx-primary:   #0F172A;
+      --tx-secondary: #475569;
+      --tx-muted:     #94A3B8;
+
+      --grad-hero-glow:  radial-gradient(ellipse at center top, rgba(59,130,246,0.08) 0%, transparent 60%);
+      --grad-card-shine: linear-gradient(135deg, rgba(59,130,246,0.02) 0%, transparent 50%);
+
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+      --shadow-el:   0 4px 12px rgba(0,0,0,0.12);
+      --shadow-glow: 0 0 30px rgba(59,130,246,0.12);
+
+      --row-border:  rgba(226,232,240,0.8);
+      --grid-line:   rgba(148,163,184,0.2);
+      --nav-bg:      rgba(248,250,252,0.92);
+    }
+
+    /* ── Reset ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--tx-primary);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--grad-cta);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.125rem;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-links a {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--tx-secondary);
+      padding: 0.375rem 0.625rem;
+      border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--tx-primary); background: rgba(128,128,128,0.08); }
+    .nav-links a.active { color: var(--accent); background: rgba(59,130,246,0.1); }
+
+    /* Theme toggle */
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--tx-secondary);
+      border-radius: var(--r-pill);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { color: var(--tx-primary); border-color: var(--border-lt); }
+
+    /* ── Page layout ─────────────────────────────────────────── */
+    main { padding-top: 60px; }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section + .section { border-top: 1px solid var(--border); }
+
+    .s-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.625rem;
+    }
+
+    .s-heading {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.625rem;
+    }
+
+    .s-desc {
+      color: var(--tx-secondary);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: calc(100vh - 60px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background: var(--grad-hero-glow);
+      pointer-events: none;
+      transition: background 0.3s;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      pointer-events: none;
+      transition: background-image 0.3s;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .hero-logo-wrap {
+      background: #FFFFFF;
+      border-radius: var(--r-lg);
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow-glow), var(--shadow-el);
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-logo { width: clamp(140px, 22vw, 200px); display: block; }
+
+    .hero-eyebrow {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span {
+      background: var(--grad-cta);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub { font-size: 1.0625rem; color: var(--tx-secondary); max-width: 520px; }
+
+    .hero-stats {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.125rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero-stat-value {
+      font-size: 1.625rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: var(--grad-cta);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat-label { font-size: 0.75rem; color: var(--tx-secondary); margin-top: 0.2rem; }
+
+    /* ── Logo section ────────────────────────────────────────── */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .logo-card {
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+    }
+
+    .logo-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .logo-preview.on-dark  { background: #080C14; }
+    .logo-preview.on-mid   { background: #111827; }
+    .logo-preview.on-light { background: #F8FAFC; }
+
+    .logo-preview img { width: 140px; }
+
+    .logo-card-info {
+      background: var(--surface-el);
+      border-top: 1px solid var(--border);
+      padding: 0.875rem 1.125rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .logo-card-title { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .logo-card-note  { font-size: 0.6875rem; color: var(--tx-muted); }
+
+    .logo-chips { display: flex; gap: 0.625rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    .logo-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.2s;
+    }
+    .logo-chip:hover { border-color: var(--border-lt); }
+
+    .logo-chip-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+    .logo-chip-name { color: var(--tx-secondary); }
+    .logo-chip-hex  { color: var(--tx-muted); font-family: var(--mono); }
+
+    .usage-card {
+      margin-top: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem 1.5rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .usage-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .usage-card li {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.875rem; color: var(--tx-secondary);
+    }
+    .usage-card li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 0.05em; }
+
+    /* ── Colors ──────────────────────────────────────────────── */
+    .color-group { margin-bottom: 2.5rem; }
+
+    .group-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tx-muted);
+      margin-bottom: 1rem;
+    }
+
+    .mode-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 2rem;
+    }
+    .mode-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .mode-divider-badge {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.875rem;
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+    }
+    .badge-dark-mode  { background: rgba(15,23,42,0.8); color: var(--tx-secondary); border: 1px solid var(--border); }
+    .badge-light-mode { background: rgba(241,245,249,0.9); color: #475569; border: 1px solid #E2E8F0; }
+
+    [data-theme="light"] .badge-dark-mode  { background: #1E293B; color: #94A3B8; }
+    [data-theme="light"] .badge-light-mode { background: rgba(59,130,246,0.08); color: var(--accent); border-color: rgba(59,130,246,0.2); }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .swatch {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+      box-shadow: var(--shadow-card);
+    }
+    .swatch:hover { transform: translateY(-2px); box-shadow: var(--shadow-el); }
+
+    .sw-color {
+      height: 68px;
+      position: relative;
+    }
+    .sw-color::after {
+      content: 'Copy';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: white;
+      background: rgba(0,0,0,0.35);
+      opacity: 0; transition: opacity 0.15s;
+    }
+    .swatch:hover .sw-color::after { opacity: 1; }
+
+    .sw-info {
+      background: var(--surface);
+      padding: 0.75rem;
+      transition: background 0.2s;
+    }
+    .sw-name { font-size: 0.8125rem; font-weight: 500; margin-bottom: 0.15rem; }
+    .sw-hex  { font-size: 0.75rem; font-family: var(--mono); color: var(--tx-muted); }
+    .sw-role { font-size: 0.6875rem; color: var(--tx-muted); margin-top: 0.25rem; line-height: 1.4; }
+
+    /* ── Typography ──────────────────────────────────────────── */
+    .font-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+    .font-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 0.75rem 1.125rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .font-pill-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--tx-muted); margin-bottom: 0.2rem; }
+    .font-pill-name  { font-size: 0.9375rem; font-weight: 600; }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 2rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .type-row:first-of-type { border-top: 1px solid var(--border); }
+
+    .type-meta-name   { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .type-meta-detail { font-size: 0.6875rem; font-family: var(--mono); color: var(--tx-muted); line-height: 1.8; }
+
+    /* ── Gradients ───────────────────────────────────────────── */
+    .grad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .grad-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+    }
+    .grad-preview { height: 110px; position: relative; }
+    .grad-info { background: var(--surface); padding: 1.125rem; transition: background 0.2s; }
+    .grad-name  { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .grad-value { font-size: 0.6875rem; font-family: var(--mono); color: var(--tx-muted); word-break: break-all; line-height: 1.6; }
+
+    /* ── Components ──────────────────────────────────────────── */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .comp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.375rem;
+      box-shadow: var(--shadow-card);
+      background-image: var(--grad-card-shine);
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .comp-title {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tx-muted);
+      margin-bottom: 1.125rem;
+    }
+
+    .comp-demo { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--r-md);
+      padding: 0.625rem 1.25rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--grad-cta);
+      color: white;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--tx-primary);
+      border: 1px solid var(--border-lt);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-cta {
+      background: var(--grad-cta);
+      color: white;
+      padding: 0.75rem 1.75rem;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--r-pill);
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .badge-success { background: rgba(34,197,94,0.12); color: #22C55E; }
+    .badge-success .badge-dot { background: #22C55E; }
+    .badge-info    { background: rgba(59,130,246,0.12); color: #3B82F6; }
+    .badge-info .badge-dot { background: #3B82F6; }
+    .badge-warning { background: rgba(245,158,11,0.12); color: #F59E0B; }
+    .badge-warning .badge-dot { background: #F59E0B; }
+    .badge-error   { background: rgba(239,68,68,0.12); color: #EF4444; }
+    .badge-error .badge-dot { background: #EF4444; }
+
+    /* KPI */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .kpi-card {
+      background: var(--surface-el);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.125rem;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .kpi-icon {
+      width: 30px; height: 30px;
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.625rem;
+      font-size: 0.875rem;
+    }
+
+    .kpi-value { font-size: 1.375rem; font-weight: 700; line-height: 1.2; }
+    .kpi-label { font-size: 0.6875rem; color: var(--tx-secondary); margin-top: 0.15rem; }
+    .kpi-delta { font-size: 0.6875rem; font-weight: 500; color: var(--success); margin-top: 0.3rem; }
+
+    /* Funnel */
+    .funnel { display: flex; flex-direction: column; gap: 0.5rem; }
+    .funnel-stage { display: flex; align-items: center; gap: 0.625rem; }
+    .funnel-lbl { font-size: 0.6875rem; color: var(--tx-secondary); width: 76px; flex-shrink: 0; }
+    .funnel-wrap { flex: 1; height: 22px; background: var(--surface-el); border-radius: var(--r-sm); overflow: hidden; transition: background 0.2s; }
+    .funnel-bar {
+      height: 100%;
+      background: var(--grad-cta);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center;
+      padding-left: 0.5rem;
+      font-size: 0.625rem; font-weight: 600; color: white;
+    }
+    .funnel-bar.won { background: linear-gradient(135deg, #22C55E, #16A34A); }
+    .funnel-count { font-size: 0.6875rem; color: var(--tx-muted); font-family: var(--mono); width: 32px; text-align: right; flex-shrink: 0; }
+
+    /* Table */
+    .demo-table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+    .demo-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tx-muted);
+      padding: 0.5rem 0.625rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-table td {
+      padding: 0.5625rem 0.625rem;
+      color: var(--tx-secondary);
+      border-bottom: 1px solid var(--row-border);
+      transition: color 0.2s;
+    }
+    .demo-table tr:hover td { background: rgba(128,128,128,0.04); }
+    .demo-table td:first-child { color: var(--tx-primary); font-weight: 500; }
+
+    /* ── Voice ───────────────────────────────────────────────── */
+    .voice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .voice-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.375rem;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .voice-icon  { font-size: 1.375rem; margin-bottom: 0.625rem; }
+    .voice-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .voice-body  { font-size: 0.875rem; color: var(--tx-secondary); line-height: 1.65; }
+
+    .phrase-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .phrase-tag {
+      background: rgba(20,184,166,0.1);
+      color: var(--teal);
+      border: 1px solid rgba(20,184,166,0.2);
+      border-radius: var(--r-pill);
+      padding: 0.375rem 0.875rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+
+    .avoid-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .avoid-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .avoid-list li {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.875rem; color: var(--tx-secondary);
+    }
+    .avoid-list li::before { content: '✕'; color: var(--error); font-weight: 700; flex-shrink: 0; margin-top: 0.05em; }
+
+    /* ── Tokens ──────────────────────────────────────────────── */
+    .token-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+
+    .token-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .token-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tx-muted);
+      padding: 0.5rem 0.875rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .token-table td {
+      padding: 0.6875rem 0.875rem;
+      border-bottom: 1px solid var(--row-border);
+      color: var(--tx-secondary);
+      vertical-align: middle;
+    }
+    .token-table td:first-child { color: var(--tx-primary); font-weight: 500; }
+    .token-table code {
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      background: var(--surface-el);
+      padding: 0.2em 0.5em;
+      border-radius: var(--r-sm);
+      color: var(--cyan);
+    }
+
+    .r-preview { display: inline-block; width: 36px; height: 18px; background: var(--accent); opacity: 0.7; }
+
+    .shadow-demos { display: flex; flex-direction: column; gap: 1rem; }
+    .shadow-demo {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 1.125rem;
+      transition: background 0.2s;
+    }
+    .shadow-demo-name { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .shadow-demo-val  { font-size: 0.6875rem; font-family: var(--mono); color: var(--tx-muted); word-break: break-word; line-height: 1.6; }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 3rem 1.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.125rem; text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.25rem; font-weight: 700; letter-spacing: 0.1em;
+      background: var(--grad-cta);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-tagline { font-size: 0.875rem; color: var(--tx-secondary); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 0.8125rem; color: var(--tx-muted); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--tx-primary); }
+    .footer-copy { font-size: 0.75rem; color: var(--tx-muted); }
+
+    /* ── Toast ───────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(64px);
+      background: var(--surface-el);
+      color: var(--tx-primary);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--r-pill);
+      padding: 0.5625rem 1.125rem;
+      font-size: 0.8125rem; font-weight: 500;
+      box-shadow: var(--shadow-el);
+      z-index: 999;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s;
+      opacity: 0; pointer-events: none;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .type-row { grid-template-columns: 1fr; gap: 0.375rem; }
+      .nav-links { display: none; }
+      .comp-grid, .kpi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">CURA</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Overview</a></li>
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#gradients">Gradients</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#voice">Voice</a></li>
+      <li><a href="#tokens">Tokens</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <!-- icon set by JS -->
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ── Hero ──────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="cura-logo-dark-Bjrh0FR_.webp" alt="CURA" />
+    </div>
+    <p class="hero-eyebrow">Brand Identity Kit · v1.1</p>
+    <h1 class="hero-title">AI Automation,<br/><span>Done Right</span></h1>
+    <p class="hero-sub">The canonical reference for how CURA looks, sounds, and presents itself — built for agents, partners, and internal teams.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">6 hrs</div>
+        <div class="hero-stat-label">Saved per day</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">v1.1</div>
+        <div class="hero-stat-label">Brand version</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">2026</div>
+        <div class="hero-stat-label">Last updated</div>
+      </div>
+    </div>
+    <a href="brand-identity.json" class="btn btn-secondary" style="margin-top:0.25rem;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      brand-identity.json
+    </a>
+  </div>
+</section>
+
+<!-- ── Logo ──────────────────────────────────────────────────── -->
+<section id="logo">
+  <div class="section">
+    <p class="s-label">Identity</p>
+    <h2 class="s-heading">Logo</h2>
+    <p class="s-desc">A 3D metallic blue CA monogram — dynamic, modern, and premium. The "C" wraps around and flows into an upward-pointing "A" suggesting forward momentum and ascent.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-preview on-light">
+          <img src="cura-logo-dark-Bjrh0FR_.webp" alt="CURA on light" />
+        </div>
+        <div class="logo-card-info">
+          <div class="logo-card-title">On Light Background</div>
+          <div class="logo-card-note">Marketing site · full lockup</div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-preview on-mid">
+          <div style="background:white; border-radius:8px; padding:0.875rem 1.125rem; display:inline-block;">
+            <img src="cura-logo-dark-Bjrh0FR_.webp" alt="CURA on dark" style="width:120px; display:block;" />
+          </div>
+        </div>
+        <div class="logo-card-info">
+          <div class="logo-card-title">On Dark Surface</div>
+          <div class="logo-card-note">Command Centre platform · use white container</div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-preview on-dark" style="flex-direction:column; gap:0.5rem;">
+          <div style="background:white; border-radius:6px; padding:0.5rem; display:inline-flex;">
+            <img src="cura-logo-dark-Bjrh0FR_.webp" alt="CURA icon" style="width:44px; display:block;" />
+          </div>
+          <span style="font-size:0.6875rem; color:#64748B;">Icon only</span>
+        </div>
+        <div class="logo-card-info">
+          <div class="logo-card-title">Icon Only</div>
+          <div class="logo-card-note">CA monogram — favicon and avatar</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="group-title" style="margin-top:2rem; margin-bottom:1rem;">Logo color profile</p>
+    <div class="logo-chips">
+      <div class="logo-chip" onclick="copyHex('#1E5FAE','Primary Blue')">
+        <div class="logo-chip-dot" style="background:#1E5FAE;"></div>
+        <span class="logo-chip-name">Primary Blue</span>
+        <span class="logo-chip-hex">#1E5FAE</span>
+      </div>
+      <div class="logo-chip" onclick="copyHex('#4FC3F7','Highlight Cyan')">
+        <div class="logo-chip-dot" style="background:#4FC3F7;"></div>
+        <span class="logo-chip-name">Highlight Cyan</span>
+        <span class="logo-chip-hex">#4FC3F7</span>
+      </div>
+      <div class="logo-chip" onclick="copyHex('#0A2E6B','Deep Navy')">
+        <div class="logo-chip-dot" style="background:#0A2E6B;"></div>
+        <span class="logo-chip-name">Deep Navy</span>
+        <span class="logo-chip-hex">#0A2E6B</span>
+      </div>
+      <div class="logo-chip" onclick="copyHex('#FFFFFF','Flare White')" style="border-color:var(--border-lt);">
+        <div class="logo-chip-dot" style="background:#FFF; border:1px solid #CBD5E1;"></div>
+        <span class="logo-chip-name">Flare White</span>
+        <span class="logo-chip-hex">#FFFFFF</span>
+      </div>
+    </div>
+
+    <div class="usage-card">
+      <p class="group-title" style="margin-bottom:0;">Usage rules</p>
+      <ul>
+        <li>Primary lockup: icon stacked above wordmark, centered vertically</li>
+        <li>Maintain minimum clear space equal to the icon height on all sides</li>
+        <li>Never stretch, skew, recolor, or add effects to the logo</li>
+        <li>Current .webp has a white background — designed for light contexts; use a white container on dark surfaces</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── Colors ─────────────────────────────────────────────────── -->
+<section id="colors">
+  <div class="section">
+    <p class="s-label">Color System</p>
+    <h2 class="s-heading">Colors</h2>
+    <p class="s-desc">Two complete surface palettes — dark (default platform experience) and light (marketing site and optional preference). Accent, semantic, and chart colors are identical in both modes. Click any swatch to copy.</p>
+
+    <!-- DARK MODE TOKENS -->
+    <div class="mode-divider">
+      <div class="mode-divider-line"></div>
+      <span class="mode-divider-badge badge-dark-mode">Dark Mode</span>
+      <div class="mode-divider-line"></div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Foundation</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#080C14','Background')">
+          <div class="sw-color" style="background:#080C14; border-bottom:1px solid #1E293B;"></div>
+          <div class="sw-info"><div class="sw-name">Background</div><div class="sw-hex">#080C14</div><div class="sw-role">Primary page background</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#0D1320','Surface')">
+          <div class="sw-color" style="background:#0D1320;"></div>
+          <div class="sw-info"><div class="sw-name">Surface</div><div class="sw-hex">#0D1320</div><div class="sw-role">Card and panel backgrounds</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#111827','Surface Elevated')">
+          <div class="sw-color" style="background:#111827;"></div>
+          <div class="sw-info"><div class="sw-name">Surface Elevated</div><div class="sw-hex">#111827</div><div class="sw-role">Modals, dropdowns</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#1E293B','Border')">
+          <div class="sw-color" style="background:#1E293B;"></div>
+          <div class="sw-info"><div class="sw-name">Border</div><div class="sw-hex">#1E293B</div><div class="sw-role">Subtle dividers</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#2A3A52','Border Light')">
+          <div class="sw-color" style="background:#2A3A52;"></div>
+          <div class="sw-info"><div class="sw-name">Border Light</div><div class="sw-hex">#2A3A52</div><div class="sw-role">Interactive element borders</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Text — Dark</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#F1F5F9','Text Primary')">
+          <div class="sw-color" style="background:#F1F5F9;"></div>
+          <div class="sw-info"><div class="sw-name">Text Primary</div><div class="sw-hex">#F1F5F9</div><div class="sw-role">Headings and body copy</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#94A3B8','Text Secondary')">
+          <div class="sw-color" style="background:#94A3B8;"></div>
+          <div class="sw-info"><div class="sw-name">Text Secondary</div><div class="sw-hex">#94A3B8</div><div class="sw-role">Labels, meta information</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#64748B','Text Muted')">
+          <div class="sw-color" style="background:#64748B;"></div>
+          <div class="sw-info"><div class="sw-name">Text Muted</div><div class="sw-hex">#64748B</div><div class="sw-role">Placeholders, disabled</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHT MODE TOKENS -->
+    <div class="mode-divider">
+      <div class="mode-divider-line"></div>
+      <span class="mode-divider-badge badge-light-mode">Light Mode</span>
+      <div class="mode-divider-line"></div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Foundation — Light</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#F1F5F9','Light Background')">
+          <div class="sw-color" style="background:#F1F5F9; border-bottom:1px solid #E2E8F0;"></div>
+          <div class="sw-info"><div class="sw-name">Background</div><div class="sw-hex">#F1F5F9</div><div class="sw-role">Primary page background</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#FFFFFF','Light Surface')">
+          <div class="sw-color" style="background:#FFFFFF; border-bottom:1px solid #E2E8F0;"></div>
+          <div class="sw-info"><div class="sw-name">Surface</div><div class="sw-hex">#FFFFFF</div><div class="sw-role">Card and panel backgrounds</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#E2E8F0','Light Border')">
+          <div class="sw-color" style="background:#E2E8F0;"></div>
+          <div class="sw-info"><div class="sw-name">Border</div><div class="sw-hex">#E2E8F0</div><div class="sw-role">Subtle dividers</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#CBD5E1','Light Border Light')">
+          <div class="sw-color" style="background:#CBD5E1;"></div>
+          <div class="sw-info"><div class="sw-name">Border Light</div><div class="sw-hex">#CBD5E1</div><div class="sw-role">Interactive element borders</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Text — Light</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#0F172A','Light Text Primary')">
+          <div class="sw-color" style="background:#0F172A;"></div>
+          <div class="sw-info"><div class="sw-name">Text Primary</div><div class="sw-hex">#0F172A</div><div class="sw-role">Headings and body copy</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#475569','Light Text Secondary')">
+          <div class="sw-color" style="background:#475569;"></div>
+          <div class="sw-info"><div class="sw-name">Text Secondary</div><div class="sw-hex">#475569</div><div class="sw-role">Labels, meta information</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#94A3B8','Light Text Muted')">
+          <div class="sw-color" style="background:#94A3B8;"></div>
+          <div class="sw-info"><div class="sw-name">Text Muted</div><div class="sw-hex">#94A3B8</div><div class="sw-role">Placeholders, disabled</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHARED ACROSS BOTH MODES -->
+    <div class="mode-divider">
+      <div class="mode-divider-line"></div>
+      <span class="mode-divider-badge" style="background:rgba(59,130,246,0.1); color:var(--accent); border:1px solid rgba(59,130,246,0.2);">Shared — Both Modes</span>
+      <div class="mode-divider-line"></div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Accent</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#3B82F6','Primary Blue')">
+          <div class="sw-color" style="background:#3B82F6;"></div>
+          <div class="sw-info"><div class="sw-name">Primary Blue</div><div class="sw-hex">#3B82F6</div><div class="sw-role">Buttons, links, selected states</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#2563EB','Primary Blue Hover')">
+          <div class="sw-color" style="background:#2563EB;"></div>
+          <div class="sw-info"><div class="sw-name">Primary Blue Hover</div><div class="sw-hex">#2563EB</div><div class="sw-role">Hover and active</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#14B8A6','Teal')">
+          <div class="sw-color" style="background:#14B8A6;"></div>
+          <div class="sw-info"><div class="sw-name">Teal</div><div class="sw-hex">#14B8A6</div><div class="sw-role">Secondary accent, callouts</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#06B6D4','Cyan')">
+          <div class="sw-color" style="background:#06B6D4;"></div>
+          <div class="sw-info"><div class="sw-name">Cyan</div><div class="sw-hex">#06B6D4</div><div class="sw-role">Charts, data visualization</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Semantic</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#22C55E','Success')">
+          <div class="sw-color" style="background:#22C55E;"></div>
+          <div class="sw-info"><div class="sw-name">Success</div><div class="sw-hex">#22C55E</div><div class="sw-role">Completed, active, positive</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#F59E0B','Warning')">
+          <div class="sw-color" style="background:#F59E0B;"></div>
+          <div class="sw-info"><div class="sw-name">Warning</div><div class="sw-hex">#F59E0B</div><div class="sw-role">Caution, pending</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#EF4444','Error')">
+          <div class="sw-color" style="background:#EF4444;"></div>
+          <div class="sw-info"><div class="sw-name">Error</div><div class="sw-hex">#EF4444</div><div class="sw-role">Errors, overdue, alerts</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#3B82F6','Info')">
+          <div class="sw-color" style="background:#3B82F6;"></div>
+          <div class="sw-info"><div class="sw-name">Info</div><div class="sw-hex">#3B82F6</div><div class="sw-role">Informational, scheduled</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <p class="group-title">Chart</p>
+      <div class="swatches">
+        <div class="swatch" onclick="copyHex('#22C55E','Chart Green')">
+          <div class="sw-color" style="background:#22C55E;"></div>
+          <div class="sw-info"><div class="sw-name">Chart Green</div><div class="sw-hex">#22C55E</div><div class="sw-role">Revenue, MRR growth</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#06B6D4','Chart Cyan')">
+          <div class="sw-color" style="background:#06B6D4;"></div>
+          <div class="sw-info"><div class="sw-name">Chart Cyan</div><div class="sw-hex">#06B6D4</div><div class="sw-role">Secondary data series</div></div>
+        </div>
+        <div class="swatch" onclick="copyHex('#3B82F6','Pipeline Blue')">
+          <div class="sw-color" style="background:#3B82F6;"></div>
+          <div class="sw-info"><div class="sw-name">Pipeline Blue</div><div class="sw-hex">#3B82F6</div><div class="sw-role">Funnel bars, progress</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Typography ─────────────────────────────────────────────── -->
+<section id="typography">
+  <div class="section">
+    <p class="s-label">Typography</p>
+    <h2 class="s-heading">Type Scale</h2>
+    <p class="s-desc">Inter for all UI copy. JetBrains Mono for code and data. Weight contrast and spacing do the heavy lifting in both modes.</p>
+
+    <div class="font-pills">
+      <div class="font-pill">
+        <div class="font-pill-label">Primary</div>
+        <div class="font-pill-name">Inter</div>
+      </div>
+      <div class="font-pill">
+        <div class="font-pill-label">Monospace</div>
+        <div class="font-pill-name" style="font-family:var(--mono);">JetBrains Mono</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Hero Heading</div>
+          <div class="type-meta-detail">3rem · 700<br/>lh 1.15 · ls −0.02em</div>
+        </div>
+        <div style="font-size:clamp(1.75rem,5vw,3rem); font-weight:700; line-height:1.15; letter-spacing:-0.02em;">Real Results,<br/>Proven ROI</div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Section Heading</div>
+          <div class="type-meta-detail">2rem · 600<br/>lh 1.25 · ls −0.01em</div>
+        </div>
+        <div style="font-size:2rem; font-weight:600; line-height:1.25; letter-spacing:-0.01em;">Command Centre</div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Card Heading</div>
+          <div class="type-meta-detail">1.25rem · 600<br/>lh 1.35</div>
+        </div>
+        <div style="font-size:1.25rem; font-weight:600; line-height:1.35;">Total Pipeline</div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Metric</div>
+          <div class="type-meta-detail">1.75rem · 700<br/>lh 1.2</div>
+        </div>
+        <div>
+          <div style="font-size:1.75rem; font-weight:700; line-height:1.2;">£142,800</div>
+          <div style="font-size:0.75rem; color:var(--tx-secondary); margin-top:0.15rem;">Revenue MTD</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Body</div>
+          <div class="type-meta-detail">1rem · 400<br/>lh 1.6</div>
+        </div>
+        <div style="font-size:1rem; line-height:1.6; color:var(--tx-secondary); max-width:460px;">CURA helps small and medium-sized enterprises eliminate administrative burden through intelligent automation — saving teams up to 6 hours every day.</div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Label</div>
+          <div class="type-meta-detail">0.75rem · 500<br/>uppercase · ls 0.08em</div>
+        </div>
+        <div style="font-size:0.75rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--tx-muted);">Pipeline Stage</div>
+      </div>
+      <div class="type-row">
+        <div>
+          <div class="type-meta-name">Mono</div>
+          <div class="type-meta-detail">JetBrains Mono<br/>0.875rem · 400</div>
+        </div>
+        <div style="font-family:var(--mono); font-size:0.875rem; color:var(--cyan);">{ "primary": "#3B82F6" }</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Gradients ──────────────────────────────────────────────── -->
+<section id="gradients">
+  <div class="section">
+    <p class="s-label">Gradients</p>
+    <h2 class="s-heading">Gradients</h2>
+    <p class="s-desc">Three production gradients — hero atmosphere, card depth, and CTA. The hero glow and card shine update automatically between modes.</p>
+
+    <div class="grad-grid">
+      <div class="grad-card">
+        <div class="grad-preview" style="background:var(--bg); position:relative;">
+          <div style="position:absolute;inset:0;background:var(--grad-hero-glow);"></div>
+        </div>
+        <div class="grad-info">
+          <div class="grad-name">Hero Glow</div>
+          <div class="grad-value">
+            <strong>Dark:</strong> rgba(59,130,246,0.15)<br/>
+            <strong>Light:</strong> rgba(59,130,246,0.08)
+          </div>
+        </div>
+      </div>
+      <div class="grad-card">
+        <div class="grad-preview" style="background:var(--surface); position:relative;">
+          <div style="position:absolute;inset:0;background:var(--grad-card-shine);"></div>
+        </div>
+        <div class="grad-info">
+          <div class="grad-name">Card Shine</div>
+          <div class="grad-value">
+            <strong>Dark:</strong> rgba(255,255,255,0.03)<br/>
+            <strong>Light:</strong> rgba(59,130,246,0.02)
+          </div>
+        </div>
+      </div>
+      <div class="grad-card">
+        <div class="grad-preview" style="background:var(--grad-cta); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:0.875rem; font-weight:600; color:white;">Book a Free Discovery Session →</span>
+        </div>
+        <div class="grad-info">
+          <div class="grad-name">CTA Button</div>
+          <div class="grad-value">linear-gradient(135deg, #3B82F6, #2563EB) — same both modes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Components ─────────────────────────────────────────────── -->
+<section id="components">
+  <div class="section">
+    <p class="s-label">UI Components</p>
+    <h2 class="s-heading">Components</h2>
+    <p class="s-desc">Core UI patterns from the Command Centre platform. All components use CSS variables — toggle the theme in the nav to preview both modes.</p>
+
+    <div class="comp-grid">
+
+      <!-- Buttons -->
+      <div class="comp-card">
+        <div class="comp-title">Buttons</div>
+        <div class="comp-demo" style="flex-direction:column; align-items:flex-start;">
+          <button class="btn btn-primary">Get Started</button>
+          <button class="btn btn-secondary">Learn More</button>
+          <button class="btn btn-cta">Book Free Discovery Session →</button>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="comp-card">
+        <div class="comp-title">Status Badges</div>
+        <div class="comp-demo">
+          <span class="badge badge-success"><span class="badge-dot"></span>Completed</span>
+          <span class="badge badge-info"><span class="badge-dot"></span>Scheduled</span>
+          <span class="badge badge-warning"><span class="badge-dot"></span>Pending</span>
+          <span class="badge badge-error"><span class="badge-dot"></span>Overdue</span>
+        </div>
+      </div>
+
+      <!-- KPI Cards — full width -->
+      <div class="comp-card" style="grid-column: 1 / -1;">
+        <div class="comp-title">KPI Cards — Command Centre</div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(59,130,246,0.12);">💰</div>
+            <div class="kpi-value" style="color:var(--accent);">£142k</div>
+            <div class="kpi-label">Revenue MTD</div>
+            <div class="kpi-delta">↑ 12% vs last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(34,197,94,0.12);">📈</div>
+            <div class="kpi-value" style="color:var(--success);">£89k</div>
+            <div class="kpi-label">MRR Growth</div>
+            <div class="kpi-delta">↑ 8% vs last month</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(6,182,212,0.12);">🎯</div>
+            <div class="kpi-value" style="color:var(--cyan);">£620k</div>
+            <div class="kpi-label">Total Pipeline</div>
+            <div class="kpi-delta">↑ 24 new leads</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(20,184,166,0.12);">⚡</div>
+            <div class="kpi-value" style="color:var(--teal);">34%</div>
+            <div class="kpi-label">Conversion Rate</div>
+            <div class="kpi-delta">30-day average</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:rgba(245,158,11,0.12);">👥</div>
+            <div class="kpi-value" style="color:var(--warning);">5</div>
+            <div class="kpi-label">Active Clients</div>
+            <div class="kpi-delta">+2 this quarter</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Funnel -->
+      <div class="comp-card">
+        <div class="comp-title">Pipeline Funnel</div>
+        <div class="funnel">
+          <div class="funnel-stage">
+            <span class="funnel-lbl">Prospect</span>
+            <div class="funnel-wrap"><div class="funnel-bar" style="width:100%;">124</div></div>
+            <span class="funnel-count">124</span>
+          </div>
+          <div class="funnel-stage">
+            <span class="funnel-lbl">Qualified</span>
+            <div class="funnel-wrap"><div class="funnel-bar" style="width:72%;">89</div></div>
+            <span class="funnel-count">89</span>
+          </div>
+          <div class="funnel-stage">
+            <span class="funnel-lbl">Proposal</span>
+            <div class="funnel-wrap"><div class="funnel-bar" style="width:46%;">57</div></div>
+            <span class="funnel-count">57</span>
+          </div>
+          <div class="funnel-stage">
+            <span class="funnel-lbl">Negotiation</span>
+            <div class="funnel-wrap"><div class="funnel-bar" style="width:28%;">35</div></div>
+            <span class="funnel-count">35</span>
+          </div>
+          <div class="funnel-stage">
+            <span class="funnel-lbl">Won</span>
+            <div class="funnel-wrap"><div class="funnel-bar won" style="width:14%;">17</div></div>
+            <span class="funnel-count">17</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="comp-card">
+        <div class="comp-title">Data Table</div>
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>Consultant</th>
+              <th>Pipeline</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sarah K.</td>
+              <td>£48,200</td>
+              <td><span class="badge badge-success" style="font-size:0.625rem;"><span class="badge-dot"></span>Active</span></td>
+            </tr>
+            <tr>
+              <td>James M.</td>
+              <td>£31,500</td>
+              <td><span class="badge badge-info" style="font-size:0.625rem;"><span class="badge-dot"></span>Meeting</span></td>
+            </tr>
+            <tr>
+              <td>Priya L.</td>
+              <td>£22,800</td>
+              <td><span class="badge badge-warning" style="font-size:0.625rem;"><span class="badge-dot"></span>Pending</span></td>
+            </tr>
+            <tr>
+              <td>Tom R.</td>
+              <td>£18,100</td>
+              <td><span class="badge badge-error" style="font-size:0.625rem;"><span class="badge-dot"></span>Overdue</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Voice ──────────────────────────────────────────────────── -->
+<section id="voice">
+  <div class="section">
+    <p class="s-label">Voice & Tone</p>
+    <h2 class="s-heading">How CURA Speaks</h2>
+    <p class="s-desc">Confident but not arrogant. Direct and clear. Results-led, not hype-led. Always pointing toward a next step.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-icon">📣</div>
+        <div class="voice-title">Marketing</div>
+        <div class="voice-body">Bold, benefit-led, and empathetic to the pain of admin overload. Name the problem clearly before the solution. Lead with outcomes and data — hours saved, ROI percentages.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-icon">⚙️</div>
+        <div class="voice-title">Product</div>
+        <div class="voice-body">Clean and functional. Labels are short. Metrics are prominent. The UI does the talking — minimal explanatory copy. Every word earns its place.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-icon">💬</div>
+        <div class="voice-title">Support</div>
+        <div class="voice-body">Helpful, patient, and human. We guide rather than lecture. Speak to the business owner, not the developer. Emphasise ease — "done for you", not "DIY".</div>
+      </div>
+    </div>
+
+    <p class="group-title" style="margin-top:2rem; margin-bottom:0.75rem;">Key phrases</p>
+    <div class="phrase-tags">
+      <span class="phrase-tag">AI Automation, Done Right</span>
+      <span class="phrase-tag">Results-Focused Implementation</span>
+      <span class="phrase-tag">Real Results, Proven ROI</span>
+      <span class="phrase-tag">Your Data, Protected</span>
+      <span class="phrase-tag">Up to 6 hours saved per day</span>
+    </div>
+
+    <div class="avoid-card">
+      <p class="group-title">Always avoid</p>
+      <ul class="avoid-list">
+        <li>Overly technical AI/ML terminology without context</li>
+        <li>Hype language ("revolutionary", "game-changing") without backing data</li>
+        <li>Passive voice when describing what CURA does</li>
+        <li>Jargon that alienates non-technical SME owners</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tokens ─────────────────────────────────────────────────── -->
+<section id="tokens">
+  <div class="section">
+    <p class="s-label">Design Tokens</p>
+    <h2 class="s-heading">Spacing, Radius & Shadows</h2>
+    <p class="s-desc">Base unit is 4px (0.25rem). Shadows adapt between modes — heavier in dark, lighter in light.</p>
+
+    <div class="token-grid">
+      <div>
+        <p class="group-title" style="margin-bottom:1rem;">Border Radius</p>
+        <table class="token-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Preview</th></tr></thead>
+          <tbody>
+            <tr><td>Small</td><td><code>0.375rem</code></td><td><div class="r-preview" style="border-radius:0.375rem;"></div></td></tr>
+            <tr><td>Medium</td><td><code>0.5rem</code></td><td><div class="r-preview" style="border-radius:0.5rem;"></div></td></tr>
+            <tr><td>Large / Card</td><td><code>0.75rem</code></td><td><div class="r-preview" style="border-radius:0.75rem;"></div></td></tr>
+            <tr><td>Pill</td><td><code>9999px</code></td><td><div class="r-preview" style="border-radius:9999px;"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <p class="group-title" style="margin-bottom:1rem;">Spacing</p>
+        <table class="token-table">
+          <thead><tr><th>Context</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Base unit</td><td><code>0.25rem (4px)</code></td></tr>
+            <tr><td>Section padding</td><td><code>4–6rem vertical</code></td></tr>
+            <tr><td>Card padding</td><td><code>1.25–1.5rem</code></td></tr>
+            <tr><td>Card gap</td><td><code>1–1.5rem</code></td></tr>
+            <tr><td>Component gap</td><td><code>0.75rem</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <p class="group-title" style="margin-bottom:1rem;">Shadows</p>
+        <div class="shadow-demos">
+          <div class="shadow-demo" style="box-shadow:var(--shadow-card);">
+            <div class="shadow-demo-name">Card</div>
+            <div class="shadow-demo-val">
+              <strong>Dark:</strong> 0 1px 3px rgba(0,0,0,0.3)<br/>
+              <strong>Light:</strong> 0 1px 3px rgba(0,0,0,0.08)
+            </div>
+          </div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-el);">
+            <div class="shadow-demo-name">Elevated</div>
+            <div class="shadow-demo-val">
+              <strong>Dark:</strong> 0 4px 12px rgba(0,0,0,0.4)<br/>
+              <strong>Light:</strong> 0 4px 12px rgba(0,0,0,0.12)
+            </div>
+          </div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-glow);">
+            <div class="shadow-demo-name">Glow</div>
+            <div class="shadow-demo-val">
+              <strong>Dark:</strong> 0 0 30px rgba(59,130,246,0.15)<br/>
+              <strong>Light:</strong> 0 0 30px rgba(59,130,246,0.12)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">CURA</div>
+    <div class="footer-tagline">AI Automation Consultancy For SMEs &amp; Growing Businesses</div>
+    <div class="footer-links">
+      <a href="https://cura-co.com">cura-co.com</a>
+      <a href="brand-identity.json">brand-identity.json</a>
+      <a href="BRAND.md">BRAND.md</a>
+    </div>
+    <div class="footer-copy">© 2026 CURA. All rights reserved.</div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+  /* ── Theme ──────────────────────────────────────────────────── */
+  function toggleTheme() {
+    var html = document.documentElement;
+    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('cura-theme', next);
+    renderIcon(next);
+  }
+
+  function renderIcon(theme) {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    var moon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    var sun  = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+    btn.innerHTML = theme === 'dark' ? sun : moon;
+    btn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+
+  /* Init icon on load */
+  renderIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+
+  /* ── Clipboard ───────────────────────────────────────────────── */
+  function copyHex(hex, name) {
+    navigator.clipboard.writeText(hex).then(function () {
+      showToast('Copied ' + hex);
+    }).catch(function () {
+      showToast(hex + ' — ' + name);
+    });
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function () { t.classList.remove('show'); }, 2000);
+  }
+
+  /* ── Active nav ──────────────────────────────────────────────── */
+  var navLinks = document.querySelectorAll('#navLinks a');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var id = e.target.id;
+        navLinks.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-50% 0px -49% 0px' });
+
+  document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
+</script>
+</body>
+</html>
