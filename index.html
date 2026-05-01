@@ -137,15 +137,19 @@
     }
 
     .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      background: var(--grad-cta);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+      background: #fff;
+      padding: 2px 6px;
     }
 
     .nav-links {
@@ -756,6 +760,179 @@
     .shadow-demo-name { font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.25rem; }
     .shadow-demo-val  { font-size: 0.6875rem; font-family: var(--mono); color: var(--tx-muted); word-break: break-word; line-height: 1.6; }
 
+    /* ── AI & Agents ─────────────────────────────────────────── */
+    .ai-intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .ai-intro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .ai-intro-icon { font-size: 1.375rem; margin-bottom: 0.5rem; }
+    .ai-intro-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .ai-intro-desc  { font-size: 0.8125rem; color: var(--tx-secondary); line-height: 1.55; }
+
+    /* Prompt blocks */
+    .prompt-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .prompt-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.125rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .prompt-header-left { display: flex; align-items: center; gap: 0.625rem; }
+
+    .prompt-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--r-sm);
+    }
+
+    .prompt-tag-copy   { background: rgba(59,130,246,0.12); color: var(--accent); }
+    .prompt-tag-design { background: rgba(20,184,166,0.12); color: var(--teal); }
+    .prompt-tag-dev    { background: rgba(6,182,212,0.12);  color: var(--cyan); }
+    .prompt-tag-review { background: rgba(245,158,11,0.12); color: var(--warning); }
+
+    .prompt-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-family: var(--font);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--tx-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 0.3rem 0.625rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .copy-btn:hover { color: var(--tx-primary); border-color: var(--border-lt); background: rgba(128,128,128,0.06); }
+    .copy-btn.copied { color: var(--success); border-color: rgba(34,197,94,0.3); }
+
+    .prompt-body {
+      padding: 1.125rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: var(--tx-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .prompt-body .ph-comment { color: var(--tx-muted); }
+    .prompt-body .ph-key     { color: var(--accent); }
+    .prompt-body .ph-value   { color: var(--teal); }
+    .prompt-body .ph-task    { color: var(--warning); }
+    .prompt-body .ph-url     { color: var(--cyan); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* JSON paths table */
+    .paths-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+    }
+    .paths-table th {
+      text-align: left;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tx-muted);
+      padding: 0.5rem 0.875rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .paths-table td {
+      padding: 0.625rem 0.875rem;
+      border-bottom: 1px solid var(--row-border);
+      vertical-align: middle;
+    }
+    .paths-table td:first-child { color: var(--tx-secondary); }
+    .paths-table td code {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: var(--surface-el);
+      padding: 0.2em 0.5em;
+      border-radius: var(--r-sm);
+      color: var(--cyan);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .paths-table td code:hover { background: rgba(6,182,212,0.12); }
+    .paths-table td:last-child { color: var(--tx-muted); font-size: 0.75rem; }
+
+    .integration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .integration-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .integration-card-header {
+      padding: 0.875rem 1.125rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s;
+    }
+
+    .integration-card-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .integration-card-body {
+      padding: 1rem 1.125rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      line-height: 1.8;
+      color: var(--tx-secondary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
     /* ── Footer ──────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
@@ -811,7 +988,9 @@
 <!-- ── Nav ───────────────────────────────────────────────────── -->
 <nav>
   <div class="nav-inner">
-    <span class="nav-logo">CURA</span>
+    <a href="#hero" class="nav-logo">
+      <img src="cura-logo-dark-Bjrh0FR_.webp" alt="CURA" />
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#hero">Overview</a></li>
       <li><a href="#logo">Logo</a></li>
@@ -821,6 +1000,7 @@
       <li><a href="#components">Components</a></li>
       <li><a href="#voice">Voice</a></li>
       <li><a href="#tokens">Tokens</a></li>
+      <li><a href="#ai">AI & Agents</a></li>
     </ul>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <!-- icon set by JS -->
@@ -1486,6 +1666,284 @@
   </div>
 </section>
 
+<!-- ── AI & Agents ─────────────────────────────────────────── -->
+<section id="ai">
+  <div class="section">
+    <p class="s-label">AI & Agents</p>
+    <h2 class="s-heading">Using CURA with AI</h2>
+    <p class="s-desc">The <code style="font-family:var(--mono);font-size:0.875rem;background:var(--surface-el);padding:0.15em 0.45em;border-radius:var(--r-sm);color:var(--cyan);">brand-identity.json</code> is machine-readable by design. Point any AI agent, LLM prompt, or automation at it to get consistent brand output without manual copying.</p>
+
+    <div class="ai-intro-grid">
+      <div class="ai-intro-card">
+        <div class="ai-intro-icon">✍️</div>
+        <div class="ai-intro-title">Copywriting</div>
+        <div class="ai-intro-desc">Feed the voice & tone section to get on-brand marketing copy, emails, and social posts without briefing the AI from scratch each time.</div>
+      </div>
+      <div class="ai-intro-card">
+        <div class="ai-intro-icon">🎨</div>
+        <div class="ai-intro-title">Design & UI</div>
+        <div class="ai-intro-desc">Pass color tokens and typography scale to any design or front-end agent to generate pixel-accurate components that match the system.</div>
+      </div>
+      <div class="ai-intro-card">
+        <div class="ai-intro-icon">🔍</div>
+        <div class="ai-intro-title">Brand Review</div>
+        <div class="ai-intro-desc">Ask an agent to audit any content or UI against the JSON — it can flag off-brand language, wrong colors, or missing key phrases.</div>
+      </div>
+      <div class="ai-intro-card">
+        <div class="ai-intro-icon">🤖</div>
+        <div class="ai-intro-title">Agent Pipelines</div>
+        <div class="ai-intro-desc">Fetch the JSON as a tool call or system context so multi-agent pipelines always have the latest canonical brand data at runtime.</div>
+      </div>
+    </div>
+
+    <!-- Prompt templates -->
+    <p class="s-label" style="margin-bottom:1rem;">Prompt Templates</p>
+
+    <!-- Copywriting -->
+    <div class="prompt-block">
+      <div class="prompt-header">
+        <div class="prompt-header-left">
+          <span class="prompt-tag prompt-tag-copy">Copywriting</span>
+          <span class="prompt-title">Brand-consistent marketing copy</span>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-copy')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="prompt-body" id="prompt-copy"><span class="ph-comment"># CURA Copywriting Prompt</span>
+<span class="ph-key">You are writing content for CURA</span> — an AI automation consultancy for SMEs.
+<span class="ph-key">Brand JSON:</span> <span class="ph-url">https://cura-co.github.io/branding/brand-identity.json</span>
+
+<span class="ph-key">Voice rules (from brand-identity.json → voice):</span>
+- Confident but not arrogant — lead with results, not features
+- Use concrete numbers: "up to 6 hours saved per day", not "saves time"
+- Speak to the business owner, not the developer
+- Emphasise ease: "done for you", not "DIY"
+
+<span class="ph-key">Key phrases to use naturally:</span>
+"AI Automation, Done Right" · "Real Results, Proven ROI" · "Your Data, Protected"
+
+<span class="ph-key">Always avoid:</span>
+"revolutionary" · "game-changing" · passive voice · unexplained AI/ML jargon
+
+<span class="ph-task">Task: [DESCRIBE WHAT YOU NEED — e.g. "Write a LinkedIn post about our Command Centre launch"]</span></div>
+    </div>
+
+    <!-- UI Dev -->
+    <div class="prompt-block">
+      <div class="prompt-header">
+        <div class="prompt-header-left">
+          <span class="prompt-tag prompt-tag-dev">UI Development</span>
+          <span class="prompt-title">Build a branded UI component</span>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-dev')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="prompt-body" id="prompt-dev"><span class="ph-comment"># CURA UI Development Prompt</span>
+<span class="ph-key">Build a component using the CURA design system.</span>
+<span class="ph-key">Full token reference:</span> <span class="ph-url">https://cura-co.github.io/branding/brand-identity.json</span>
+
+<span class="ph-key">Dark mode tokens (default):</span>
+  Background:      <span class="ph-value">#080C14</span>   Surface:     <span class="ph-value">#0D1320</span>
+  Primary blue:    <span class="ph-value">#3B82F6</span>   Teal:        <span class="ph-value">#14B8A6</span>
+  Text primary:    <span class="ph-value">#F1F5F9</span>   Text muted:  <span class="ph-value">#64748B</span>
+  Border:          <span class="ph-value">#1E293B</span>   Success:     <span class="ph-value">#22C55E</span>
+
+<span class="ph-key">Light mode overrides:</span>
+  Background:      <span class="ph-value">#F1F5F9</span>   Surface:     <span class="ph-value">#FFFFFF</span>
+  Text primary:    <span class="ph-value">#0F172A</span>   Text secondary: <span class="ph-value">#475569</span>
+  Border:          <span class="ph-value">#E2E8F0</span>
+
+<span class="ph-key">Typography:</span> Inter (UI) · JetBrains Mono (code/data)
+<span class="ph-key">Radius:</span> sm 0.375rem · md 0.5rem · card 0.75rem · pill 9999px
+<span class="ph-key">CTA gradient:</span> linear-gradient(135deg, #3B82F6, #2563EB)
+<span class="ph-key">Card shadow:</span> 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03)
+
+<span class="ph-task">Task: [DESCRIBE THE COMPONENT — e.g. "A KPI card showing MRR with a sparkline chart"]</span></div>
+    </div>
+
+    <!-- Design brief -->
+    <div class="prompt-block">
+      <div class="prompt-header">
+        <div class="prompt-header-left">
+          <span class="prompt-tag prompt-tag-design">Design</span>
+          <span class="prompt-title">Generate a design brief or spec</span>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-design')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="prompt-body" id="prompt-design"><span class="ph-comment"># CURA Design Brief Prompt</span>
+<span class="ph-key">You are a senior product designer working on CURA's platform.</span>
+<span class="ph-key">Brand reference:</span> <span class="ph-url">https://cura-co.github.io/branding/brand-identity.json</span>
+
+<span class="ph-key">Design principles:</span>
+- Dark-first: near-black backgrounds (#080C14), white text (#F1F5F9)
+- Metrics are the hero — large numbers, small labels beneath
+- Cards use subtle borders, not heavy shadows
+- Status always uses semantic color: green=done, blue=scheduled, amber=pending, red=overdue
+- Accent blue (#3B82F6) for primary CTAs only — don't dilute it
+
+<span class="ph-key">Platform context:</span>
+  Command Centre sidebar → Acquire → Convert → Deliver → Support → Measure → Team & Ops → Admin
+
+<span class="ph-task">Task: [DESCRIBE WHAT TO DESIGN — e.g. "A new onboarding flow for first-time users of the Command Centre"]</span></div>
+    </div>
+
+    <!-- Brand review -->
+    <div class="prompt-block">
+      <div class="prompt-header">
+        <div class="prompt-header-left">
+          <span class="prompt-tag prompt-tag-review">Brand Review</span>
+          <span class="prompt-title">Audit content or UI for brand compliance</span>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-review')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="prompt-body" id="prompt-review"><span class="ph-comment"># CURA Brand Compliance Review Prompt</span>
+<span class="ph-key">Review the content below against the CURA brand guide.</span>
+<span class="ph-key">Brand JSON:</span> <span class="ph-url">https://cura-co.github.io/branding/brand-identity.json</span>
+
+<span class="ph-key">Check for:</span>
+  ✓ Voice — confident, results-led, no hype language
+  ✓ Key phrases used correctly (not misquoted or paraphrased)
+  ✓ No banned words: "revolutionary", "game-changing", unexplained jargon
+  ✓ Numbers used where possible instead of vague claims
+  ✓ Speaks to SME business owners, not developers
+
+<span class="ph-key">If reviewing UI/design, also check:</span>
+  ✓ Primary blue (#3B82F6) used only for interactive/CTA elements
+  ✓ Semantic colors correct (green=success, red=error, amber=warning)
+  ✓ Inter font family, correct weight hierarchy
+  ✓ Dark-mode defaults respected
+
+<span class="ph-key">Output format:</span> List issues with severity (🔴 Critical / 🟡 Minor) and suggested fix.
+
+<span class="ph-task">Content to review:
+[PASTE YOUR CONTENT OR DESCRIBE THE UI HERE]</span></div>
+    </div>
+
+    <!-- JSON paths reference -->
+    <p class="s-label" style="margin-top:3rem; margin-bottom:1rem;">Key JSON Paths</p>
+    <p style="font-size:0.875rem; color:var(--tx-secondary); margin-bottom:1.5rem;">Click any path to copy it. Use dot-notation to extract values from <code style="font-family:var(--mono);font-size:0.8125rem;background:var(--surface-el);padding:0.15em 0.45em;border-radius:var(--r-sm);color:var(--cyan);">brand-identity.json</code> in your agent or script.</p>
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-card); transition:background 0.2s, border-color 0.2s;">
+      <table class="paths-table">
+        <thead>
+          <tr><th>What you need</th><th>JSON path</th><th>Example value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brand tagline</td><td><code onclick="copyHex('company.tagline','tagline')">company.tagline</code></td><td>AI Automation Consultancy For SMEs…</td></tr>
+          <tr><td>Value proposition</td><td><code onclick="copyHex('company.positioning.valueProposition','valueProposition')">company.positioning.valueProposition</code></td><td>Results-focused AI automation…</td></tr>
+          <tr><td>Primary accent color</td><td><code onclick="copyHex('visual.colors.accent.primary.hex','accent')">visual.colors.accent.primary.hex</code></td><td>#3B82F6</td></tr>
+          <tr><td>Dark background</td><td><code onclick="copyHex('visual.colors.foundation.background.hex','bg')">visual.colors.foundation.background.hex</code></td><td>#080C14</td></tr>
+          <tr><td>Light background</td><td><code onclick="copyHex('visual.colors.lightMode.foundation.background.hex','light-bg')">visual.colors.lightMode.foundation.background.hex</code></td><td>#F1F5F9</td></tr>
+          <tr><td>Primary font</td><td><code onclick="copyHex('visual.typography.fontFamily.primary','font')">visual.typography.fontFamily.primary</code></td><td>Inter, system-ui, …</td></tr>
+          <tr><td>Key phrases</td><td><code onclick="copyHex('voice.keyPhrases','phrases')">voice.keyPhrases</code></td><td>["AI Automation, Done Right", …]</td></tr>
+          <tr><td>Words to avoid</td><td><code onclick="copyHex('voice.avoidances','avoid')">voice.avoidances</code></td><td>["revolutionary", …]</td></tr>
+          <tr><td>CTA gradient</td><td><code onclick="copyHex('visual.colors.gradients.ctaButton','cta')">visual.colors.gradients.ctaButton</code></td><td>linear-gradient(135deg, …)</td></tr>
+          <tr><td>Card border radius</td><td><code onclick="copyHex('visual.borderRadius.card','radius')">visual.borderRadius.card</code></td><td>0.75rem</td></tr>
+          <tr><td>Success color</td><td><code onclick="copyHex('visual.colors.semantic.success.hex','success')">visual.colors.semantic.success.hex</code></td><td>#22C55E</td></tr>
+          <tr><td>Command Centre modules</td><td><code onclick="copyHex('company.products.commandCentre.modules','modules')">company.products.commandCentre.modules</code></td><td>["Command Centre", "Acquire", …]</td></tr>
+          <tr><td>Theme persistence key</td><td><code onclick="copyHex('uiPatterns.theming.persistenceKey','key')">uiPatterns.theming.persistenceKey</code></td><td>cura-theme</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Agent integration snippets -->
+    <p class="s-label" style="margin-top:3rem; margin-bottom:0.75rem;">Agent Integration</p>
+    <div class="integration-grid">
+
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <span class="integration-card-title">Fetch JSON at runtime</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'snippet-fetch')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="integration-card-body" id="snippet-fetch"><span style="color:var(--tx-muted)"># Python</span>
+import httpx
+
+brand = httpx.get(
+  "https://cura-co.github.io"
+  "/branding/brand-identity.json"
+).json()
+
+accent = brand["visual"]["colors"]\
+  ["accent"]["primary"]["hex"]
+phrases = brand["voice"]["keyPhrases"]</div>
+      </div>
+
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <span class="integration-card-title">System prompt injection</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'snippet-system')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="integration-card-body" id="snippet-system"><span style="color:var(--tx-muted)"># Claude / OpenAI SDK</span>
+import json, httpx, anthropic
+
+brand = httpx.get(
+  "https://cura-co.github.io"
+  "/branding/brand-identity.json"
+).json()
+
+client = anthropic.Anthropic()
+client.messages.create(
+  model="claude-opus-4-7",
+  system="You are a CURA brand agent.\n"
+    + json.dumps(brand, indent=2),
+  messages=[{"role":"user",
+    "content": user_message}]
+)</div>
+      </div>
+
+      <div class="integration-card">
+        <div class="integration-card-header">
+          <span class="integration-card-title">n8n / Make — HTTP node</span>
+          <button class="copy-btn" onclick="copyPrompt(this, 'snippet-n8n')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="integration-card-body" id="snippet-n8n"><span style="color:var(--tx-muted)"># HTTP Request node config</span>
+Method: GET
+URL:
+  https://cura-co.github.io
+  /branding/brand-identity.json
+
+<span style="color:var(--tx-muted)"># Then reference in downstream nodes:</span>
+{{ $json.voice.keyPhrases[0] }}
+{{ $json.visual.colors.accent.primary.hex }}
+{{ $json.company.tagline }}</div>
+      </div>
+
+    </div>
+
+    <!-- JSON URL callout -->
+    <div style="margin-top:2rem; background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.2); border-radius:var(--r-lg); padding:1.25rem 1.5rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div style="flex:1; min-width:200px;">
+        <div style="font-size:0.8125rem; font-weight:600; margin-bottom:0.25rem;">Canonical JSON endpoint</div>
+        <div style="font-family:var(--mono); font-size:0.8rem; color:var(--cyan);">https://cura-co.github.io/branding/brand-identity.json</div>
+      </div>
+      <button class="copy-btn" style="border-color:rgba(59,130,246,0.3);" onclick="copyHex('https://cura-co.github.io/branding/brand-identity.json', 'JSON URL')">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy URL
+      </button>
+    </div>
+
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -1531,6 +1989,20 @@
       showToast('Copied ' + hex);
     }).catch(function () {
       showToast(hex + ' — ' + name);
+    });
+  }
+
+  function copyPrompt(btn, id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var text = el.innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+      }, 2000);
     });
   }
 
