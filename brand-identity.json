@@ -1,0 +1,320 @@
+{
+  "$schema": "https://schema.cura-co.com/brand-identity/v1",
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-01",
+    "maintainer": "dan@cura-co.com",
+    "purpose": "Canonical brand-identity reference for agents, partners, and internal teams working with CURA."
+  },
+
+  "company": {
+    "legalName": "CURA",
+    "shortName": "CURA",
+    "domain": "cura-co.com",
+    "tagline": "AI Automation Consultancy For SMEs & Growing Businesses",
+    "description": "CURA is an AI automation consultancy that helps small and medium-sized enterprises eliminate administrative burden through intelligent automation. We combine strategic consulting with a proprietary Command Centre platform to deliver measurable ROI — saving teams hours every day and turning operational data into growth insights.",
+    "positioning": {
+      "category": "AI Automation Consultancy",
+      "targetAudience": [
+        "Small and medium-sized enterprises (SMEs)",
+        "Growing businesses scaling operations",
+        "Teams drowning in administrative work"
+      ],
+      "valueProposition": "Results-focused AI automation that delivers proven ROI — up to 6 hours saved per day — with a done-for-you implementation approach.",
+      "differentiators": [
+        "Consultancy-led, not just software — we implement for you",
+        "Results-focused with proven, measurable ROI",
+        "Full Command Centre platform for visibility across sales, ops, and finance",
+        "Before & after transparency so clients see exactly what changes",
+        "Data protection and security as a core commitment"
+      ]
+    },
+    "products": {
+      "consultancy": {
+        "name": "AI Automation Services",
+        "subtitle": "Done Right",
+        "description": "Strategic AI automation consulting with hands-on implementation for SMEs."
+      },
+      "commandCentre": {
+        "name": "Command Centre",
+        "description": "CURA's proprietary platform giving businesses a unified dashboard across sales pipeline, revenue, team performance, operations, and financial insights.",
+        "modules": [
+          "Command Centre (overview & KPIs)",
+          "Acquire (lead generation)",
+          "Convert (sales pipeline & funnel)",
+          "Deliver (fulfillment & ops)",
+          "Support (client support)",
+          "Measure (analytics & reporting)",
+          "Team & Ops (team management, sales team, technical team)",
+          "Admin (settings & configuration)"
+        ]
+      },
+      "aiDiscoverySession": {
+        "name": "AI Discovery Session",
+        "price": "Free",
+        "description": "A complimentary discovery session to identify automation opportunities within a business."
+      }
+    },
+    "partners": [
+      "Calendly",
+      "Dialpad",
+      "eClincher",
+      "Linktree"
+    ]
+  },
+
+  "visual": {
+    "logo": {
+      "description": "A 3D metallic blue 'CA' monogram. The letters are intertwined in a sleek, swooping form — the 'C' wraps around and flows into an upward-pointing 'A' that suggests forward momentum and ascent. The mark has a polished, reflective finish with gradient blues ranging from deep navy to bright cyan, with a subtle light flare at the apex of the 'A'. The overall effect is dynamic, modern, and premium.",
+      "wordmark": "CURA",
+      "wordmarkStyle": "Uppercase, bold sans-serif with a blue gradient fill matching the icon. Letters are tightly tracked with a clean, solid presence.",
+      "files": {
+        "darkVariant": "cura-logo-dark-Bjrh0FR_.webp"
+      },
+      "colorProfile": {
+        "primaryBlue": "#1E5FAE",
+        "highlightCyan": "#4FC3F7",
+        "deepNavy": "#0A2E6B",
+        "flareWhite": "#FFFFFF"
+      },
+      "usage": {
+        "primaryLockup": "Icon stacked above wordmark, centered vertically",
+        "iconOnly": "CA monogram used as favicon and avatar",
+        "clearSpace": "Minimum clear space equal to the height of the icon on all sides",
+        "backgrounds": "Designed for dark backgrounds; a light variant should be produced for light contexts"
+      }
+    },
+
+    "colors": {
+      "foundation": {
+        "background": {
+          "hex": "#080C14",
+          "role": "Primary page and app background — near-black with a cool blue undertone"
+        },
+        "surface": {
+          "hex": "#0D1320",
+          "role": "Card and panel backgrounds — slightly elevated from the base"
+        },
+        "surfaceElevated": {
+          "hex": "#111827",
+          "role": "Elevated containers, modals, dropdowns"
+        },
+        "border": {
+          "hex": "#1E293B",
+          "role": "Subtle borders and dividers between sections"
+        },
+        "borderLight": {
+          "hex": "#2A3A52",
+          "role": "Slightly more visible borders for interactive elements"
+        }
+      },
+      "text": {
+        "primary": {
+          "hex": "#F1F5F9",
+          "role": "Headings and primary body copy — high contrast on dark backgrounds"
+        },
+        "secondary": {
+          "hex": "#94A3B8",
+          "role": "Supporting text, labels, meta information"
+        },
+        "muted": {
+          "hex": "#64748B",
+          "role": "Placeholder text, disabled states, tertiary labels"
+        }
+      },
+      "accent": {
+        "primary": {
+          "hex": "#3B82F6",
+          "role": "Primary interactive blue — buttons, links, selected states, pipeline bars"
+        },
+        "primaryHover": {
+          "hex": "#2563EB",
+          "role": "Hover / active state for primary blue"
+        },
+        "teal": {
+          "hex": "#14B8A6",
+          "role": "Secondary accent — used for highlights, feature callouts, and decorative emphasis on the marketing site ('Done Right', 'Proven ROI')"
+        },
+        "cyan": {
+          "hex": "#06B6D4",
+          "role": "Accent for charts, data visualization, and metric callouts"
+        }
+      },
+      "semantic": {
+        "success": {
+          "hex": "#22C55E",
+          "role": "Positive status — completed calls, revenue growth, active indicators"
+        },
+        "warning": {
+          "hex": "#F59E0B",
+          "role": "Caution states, pending items, needs-attention flags"
+        },
+        "error": {
+          "hex": "#EF4444",
+          "role": "Errors, overdue items, 'Overdue' badges, alert states, flags"
+        },
+        "info": {
+          "hex": "#3B82F6",
+          "role": "Informational badges, scheduled status indicators"
+        }
+      },
+      "chart": {
+        "lineGreen": {
+          "hex": "#22C55E",
+          "role": "Revenue and MRR growth lines"
+        },
+        "lineCyan": {
+          "hex": "#06B6D4",
+          "role": "Secondary data series in charts"
+        },
+        "areaFill": {
+          "hex": "#22C55E10",
+          "role": "Transparent fill beneath chart lines (green with low opacity)"
+        },
+        "pipelineBlue": {
+          "hex": "#3B82F6",
+          "role": "Pipeline funnel bars and progress indicators"
+        }
+      },
+      "gradients": {
+        "heroGlow": "radial-gradient(ellipse at center top, rgba(59,130,246,0.15) 0%, transparent 60%)",
+        "cardShine": "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%)",
+        "ctaButton": "linear-gradient(135deg, #3B82F6, #2563EB)"
+      }
+    },
+
+    "typography": {
+      "philosophy": "Clean, modern, and highly legible. Type does the heavy lifting on dark backgrounds, so weight contrast and spacing are critical.",
+      "fontFamily": {
+        "primary": "Inter, system-ui, -apple-system, sans-serif",
+        "mono": "JetBrains Mono, ui-monospace, monospace"
+      },
+      "scale": {
+        "heroHeading": { "size": "2.5rem–3.5rem", "weight": 700, "lineHeight": 1.15, "letterSpacing": "-0.02em" },
+        "sectionHeading": { "size": "1.75rem–2.25rem", "weight": 600, "lineHeight": 1.25, "letterSpacing": "-0.01em" },
+        "cardHeading": { "size": "1.125rem–1.25rem", "weight": 600, "lineHeight": 1.35 },
+        "body": { "size": "0.9375rem–1rem", "weight": 400, "lineHeight": 1.6 },
+        "label": { "size": "0.75rem–0.8125rem", "weight": 500, "lineHeight": 1.4, "letterSpacing": "0.02em", "textTransform": "uppercase" },
+        "metric": { "size": "1.5rem–2rem", "weight": 700, "lineHeight": 1.2 },
+        "metricLabel": { "size": "0.75rem", "weight": 400, "lineHeight": 1.4, "color": "text.secondary" }
+      }
+    },
+
+    "spacing": {
+      "unit": "0.25rem (4px base)",
+      "sectionPadding": "4rem–6rem vertical",
+      "cardPadding": "1.25rem–1.5rem",
+      "cardGap": "1rem–1.5rem",
+      "componentGap": "0.75rem"
+    },
+
+    "borderRadius": {
+      "small": "0.375rem",
+      "medium": "0.5rem",
+      "large": "0.75rem",
+      "pill": "9999px",
+      "card": "0.75rem"
+    },
+
+    "shadows": {
+      "card": "0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03)",
+      "elevated": "0 4px 12px rgba(0,0,0,0.4)",
+      "glow": "0 0 30px rgba(59,130,246,0.15)"
+    }
+  },
+
+  "uiPatterns": {
+    "navigation": {
+      "style": "Collapsible left sidebar on the platform; top navbar on the marketing site",
+      "sidebarSections": ["Command Centre", "Acquire", "Convert", "Deliver", "Support", "Measure", "Team & Ops", "Admin"],
+      "selectedState": "Highlighted background with accent blue text and left border indicator"
+    },
+    "dashboardCards": {
+      "style": "Dark surface cards with subtle borders, displaying a single KPI metric prominently with a smaller label beneath. Often include a colored icon or mini chart.",
+      "layout": "Responsive grid — typically 4 across on desktop, stacking down on smaller screens"
+    },
+    "statBadges": {
+      "style": "Small colored badges for status — green for completed, blue for scheduled, red/orange for overdue, with pill-shaped border-radius"
+    },
+    "tables": {
+      "style": "Dark-themed with alternating subtle row backgrounds, clean column headers in uppercase labels, and inline action badges",
+      "headerStyle": "Muted text, uppercase, small font with letter-spacing"
+    },
+    "buttons": {
+      "primary": "Blue gradient background, white text, rounded corners, subtle shadow",
+      "secondary": "Transparent with border, light text, rounded corners",
+      "cta": "Wider padding, sometimes with an arrow icon, used for key conversion actions"
+    },
+    "charts": {
+      "style": "Line and area charts with green/cyan data lines on dark backgrounds, minimal grid lines, and a soft glow area fill",
+      "funnelBars": "Horizontal bars in blue, stacked vertically to represent pipeline stages"
+    },
+    "searchBar": {
+      "style": "Centered in top nav with a subtle border, placeholder text, and keyboard shortcut hint (⌘K or similar)"
+    }
+  },
+
+  "voice": {
+    "personality": [
+      "Confident but not arrogant — we let results speak",
+      "Direct and clear — no jargon for jargon's sake",
+      "Warm and approachable — we work with SMEs, not enterprises with infinite budgets",
+      "Action-oriented — always pointing toward a next step"
+    ],
+    "tone": {
+      "marketing": "Bold, benefit-led, and empathetic to the pain of admin overload. We name the problem clearly ('Administrative Work is Drowning Your Team') before presenting the solution. Highlights are data-driven — hours saved, ROI percentages.",
+      "product": "Clean and functional. Labels are short. Metrics are prominent. The UI does the talking — minimal explanatory copy.",
+      "support": "Helpful, patient, human. We guide rather than lecture."
+    },
+    "writingPrinciples": [
+      "Lead with the outcome, not the feature",
+      "Use concrete numbers over vague promises",
+      "Keep it scannable — short paragraphs, clear headings",
+      "Speak to the business owner, not the developer",
+      "Emphasize ease — 'done for you', not 'DIY'"
+    ],
+    "keyPhrases": [
+      "AI Automation, Done Right",
+      "Results-Focused Implementation",
+      "Real Results, Proven ROI",
+      "Your Data, Protected",
+      "Up to 6 hours saved per day"
+    ],
+    "avoidances": [
+      "Overly technical AI/ML terminology without context",
+      "Hype language ('revolutionary', 'game-changing') without backing data",
+      "Passive voice when describing what CURA does",
+      "Jargon that alienates non-technical SME owners"
+    ]
+  },
+
+  "dataAndMetrics": {
+    "keyStats": {
+      "timeSaved": "Up to 6 hours per day",
+      "roiProven": true
+    },
+    "dashboardKPIs": [
+      "Total Commission",
+      "Estimated Fees",
+      "Revenue (Achieved)",
+      "Technical Revenue",
+      "Total Pipeline",
+      "Revenue Collected",
+      "MRR Growth",
+      "Pipeline Funnel",
+      "Lead Velocity"
+    ],
+    "teamMetrics": [
+      "Weekly Activity",
+      "30-Day Conversion Rate",
+      "Pipeline Value",
+      "Revenue MTD",
+      "Commission MTD"
+    ]
+  },
+
+  "security": {
+    "commitment": "Your Data, Protected",
+    "description": "CURA positions data security as a core brand pillar — prominently featured on the marketing site with its own dedicated section, reinforcing trust for SME clients who may be cautious about AI and data handling."
+  }
+}
