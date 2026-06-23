@@ -781,6 +781,62 @@
     .ai-intro-title { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.3rem; }
     .ai-intro-desc  { font-size: 0.8125rem; color: var(--tx-secondary); line-height: 1.55; }
 
+    .copy-suite {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(20,184,166,0.05));
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.125rem;
+      margin: 0 0 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .copy-suite-copy {
+      min-width: 0;
+    }
+
+    .copy-suite-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .copy-suite-desc {
+      font-size: 0.8125rem;
+      color: var(--tx-secondary);
+      line-height: 1.5;
+      max-width: 54rem;
+    }
+
+    .copy-suite-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .copy-btn-primary {
+      color: #fff;
+      border-color: transparent;
+      background: var(--grad-cta);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+    }
+    .copy-btn-primary:hover {
+      color: #fff;
+      border-color: transparent;
+      background: var(--grad-cta);
+      filter: brightness(1.06);
+    }
+    .copy-btn-primary.copied {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, #22C55E, #16A34A);
+    }
+
     /* Prompt blocks */
     .prompt-block {
       background: var(--surface);
@@ -980,6 +1036,9 @@
       .type-row { grid-template-columns: 1fr; gap: 0.375rem; }
       .nav-links { display: none; }
       .comp-grid, .kpi-grid { grid-template-columns: 1fr; }
+      .copy-suite { flex-direction: column; align-items: stretch; }
+      .copy-suite-actions { width: 100%; justify-content: flex-start; }
+      .copy-suite-actions .copy-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -1698,6 +1757,22 @@
 
     <!-- Prompt templates -->
     <p class="s-label" style="margin-bottom:1rem;">Prompt Templates</p>
+    <div class="copy-suite">
+      <div class="copy-suite-copy">
+        <div class="copy-suite-title">Copy prompt pack</div>
+        <div class="copy-suite-desc">Grab the four prompt templates in one clean clipboard copy, or use the full agent pack if you want the runtime snippets too.</div>
+      </div>
+      <div class="copy-suite-actions">
+        <button class="copy-btn copy-btn-primary" onclick="copyPromptPack(this)">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy prompts
+        </button>
+        <button class="copy-btn copy-btn-primary" onclick="copyAgentPack(this)">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy full pack
+        </button>
+      </div>
+    </div>
 
     <!-- Copywriting -->
     <div class="prompt-block">
@@ -1858,6 +1933,18 @@
 
     <!-- Agent integration snippets -->
     <p class="s-label" style="margin-top:3rem; margin-bottom:0.75rem;">Agent Integration</p>
+    <div class="copy-suite">
+      <div class="copy-suite-copy">
+        <div class="copy-suite-title">Copy runtime snippets</div>
+        <div class="copy-suite-desc">Copy the fetch, system-prompt, and automation examples together when you want to seed a tool, workflow, or agent with CURA's live brand JSON.</div>
+      </div>
+      <div class="copy-suite-actions">
+        <button class="copy-btn copy-btn-primary" onclick="copySnippetPack(this)">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy snippets
+        </button>
+      </div>
+    </div>
     <div class="integration-grid">
 
       <div class="integration-card">
@@ -1985,25 +2072,122 @@ URL:
 
   /* ── Clipboard ───────────────────────────────────────────────── */
   function copyHex(hex, name) {
-    navigator.clipboard.writeText(hex).then(function () {
-      showToast('Copied ' + hex);
-    }).catch(function () {
-      showToast(hex + ' — ' + name);
-    });
+    copyText(hex, null, 'Copied ' + hex, 'Copy failed');
   }
 
   function copyPrompt(btn, id) {
+    copyElementText(id, btn, 'Copied prompt');
+  }
+
+  function copyPromptPack(btn) {
+    copyPack([
+      'prompt-copy',
+      'prompt-dev',
+      'prompt-design',
+      'prompt-review'
+    ], btn, 'Copied prompt pack', 'CURA prompt pack');
+  }
+
+  function copySnippetPack(btn) {
+    copyPack([
+      'snippet-fetch',
+      'snippet-system',
+      'snippet-n8n'
+    ], btn, 'Copied snippets', 'CURA runtime snippets');
+  }
+
+  function copyAgentPack(btn) {
+    copyPack([
+      'prompt-copy',
+      'prompt-dev',
+      'prompt-design',
+      'prompt-review',
+      'snippet-fetch',
+      'snippet-system',
+      'snippet-n8n'
+    ], btn, 'Copied full pack', 'CURA agent pack');
+  }
+
+  function copyPack(ids, btn, toastLabel, packLabel) {
+    var parts = ids.map(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return '';
+      var card = el.closest('.prompt-block, .integration-card');
+      var title = '';
+      if (card) {
+        var heading = card.querySelector('.prompt-title, .integration-card-title');
+        title = heading ? heading.innerText.trim() : '';
+      }
+      var body = el.innerText.trim();
+      return (title ? '## ' + title + '\n\n' : '') + body;
+    }).filter(Boolean);
+
+    var text = '';
+    if (packLabel) {
+      text += '# ' + packLabel + '\n\n';
+    }
+    text += parts.join('\n\n---\n\n');
+    copyText(text, btn, toastLabel || 'Copied pack');
+  }
+
+  function copyElementText(id, btn, toastLabel) {
     var el = document.getElementById(id);
     if (!el) return;
-    var text = el.innerText;
-    navigator.clipboard.writeText(text).then(function () {
-      btn.classList.add('copied');
-      btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
-      setTimeout(function () {
-        btn.classList.remove('copied');
-        btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
-      }, 2000);
+    copyText(el.innerText.trim(), btn, toastLabel || 'Copied');
+  }
+
+  function copyText(text, btn, toastLabel, failureLabel) {
+    var promise = navigator.clipboard && navigator.clipboard.writeText
+      ? navigator.clipboard.writeText(text).then(function () {
+        return true;
+      }, function () {
+        return fallbackCopyText(text);
+      })
+      : fallbackCopyText(text);
+
+    promise.then(function (ok) {
+      if (ok === false) {
+        showToast(failureLabel || 'Copy failed');
+        return;
+      }
+      showToast(toastLabel || 'Copied');
+      if (btn) flashCopiedButton(btn, toastLabel || 'Copied');
+    }).catch(function () {
+      showToast(failureLabel || 'Copy failed');
     });
+  }
+
+  function fallbackCopyText(text) {
+    return new Promise(function (resolve) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      area.style.pointerEvents = 'none';
+      document.body.appendChild(area);
+      area.select();
+      var copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch (error) {
+        copied = false;
+      }
+      document.body.removeChild(area);
+      resolve(copied);
+    });
+  }
+
+  function flashCopiedButton(btn, label) {
+    if (!btn) return;
+    var originalHtml = btn.innerHTML;
+    var originalClass = btn.className;
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> ' + label;
+    setTimeout(function () {
+      btn.className = originalClass;
+      btn.innerHTML = originalHtml;
+    }, 1800);
   }
 
   function showToast(msg) {
