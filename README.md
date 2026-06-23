@@ -8,6 +8,11 @@
   The canonical reference for how CURA looks, sounds, and presents itself — built for agents, partners, and internal teams.
 </p>
 
+<p align="center">
+  <a href="https://cura-co.github.io/branding/">Live brand kit</a> ·
+  <a href="https://cura-co.github.io/branding/schemas/brand-identity-v1.schema.json">JSON Schema</a>
+</p>
+
 ---
 
 ## What's in this repo
@@ -27,6 +32,9 @@
 ## Usage
 
 This repo is designed to be consumed by AI agents, automation tools, and partner integrations that need to represent or interact with the CURA brand. Point any system to `brand-identity.json` for structured access to colors, typography, voice guidelines, and more.
+
+- Live brand kit: [cura-co.github.io/branding](https://cura-co.github.io/branding/)
+- Schema: [schemas/brand-identity-v1.schema.json](https://cura-co.github.io/branding/schemas/brand-identity-v1.schema.json)
 
 ```jsonc
 // Example: pull the primary accent color

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.cura-co.com/brand-identity/v1",
+  "$schema": "https://cura-co.github.io/branding/schemas/brand-identity-v1.schema.json",
   "meta": {
     "version": "1.1.0",
     "lastUpdated": "2026-05-01",

@@ -1,0 +1,951 @@
+{
+  "$id": "https://cura-co.github.io/branding/schemas/brand-identity-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CURA Brand Identity Schema",
+  "description": "Validates CURA's canonical brand identity file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "meta",
+    "company",
+    "visual",
+    "uiPatterns",
+    "voice",
+    "dataAndMetrics",
+    "security"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "lastUpdated",
+        "maintainer",
+        "purpose"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date"
+        },
+        "maintainer": {
+          "type": "string",
+          "format": "email"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      }
+    },
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legalName",
+        "shortName",
+        "domain",
+        "tagline",
+        "description",
+        "positioning",
+        "products",
+        "partners"
+      ],
+      "properties": {
+        "legalName": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "positioning": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "category",
+            "targetAudience",
+            "valueProposition",
+            "differentiators"
+          ],
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "targetAudience": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "valueProposition": {
+              "type": "string"
+            },
+            "differentiators": {
+              "$ref": "#/$defs/stringArray"
+            }
+          }
+        },
+        "products": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "consultancy",
+            "commandCentre",
+            "aiDiscoverySession"
+          ],
+          "properties": {
+            "consultancy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "subtitle",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "subtitle": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            },
+            "commandCentre": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description",
+                "modules"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "modules": {
+                  "$ref": "#/$defs/stringArray"
+                }
+              }
+            },
+            "aiDiscoverySession": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "price",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "partners": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logo",
+        "colors",
+        "typography",
+        "spacing",
+        "borderRadius",
+        "shadows"
+      ],
+      "properties": {
+        "logo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "wordmark",
+            "wordmarkStyle",
+            "files",
+            "colorProfile",
+            "usage"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "wordmark": {
+              "type": "string"
+            },
+            "wordmarkStyle": {
+              "type": "string"
+            },
+            "files": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "darkVariant"
+              ],
+              "properties": {
+                "darkVariant": {
+                  "type": "string"
+                }
+              }
+            },
+            "colorProfile": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "primaryBlue",
+                "highlightCyan",
+                "deepNavy",
+                "flareWhite"
+              ],
+              "properties": {
+                "primaryBlue": {
+                  "$ref": "#/$defs/hexColor"
+                },
+                "highlightCyan": {
+                  "$ref": "#/$defs/hexColor"
+                },
+                "deepNavy": {
+                  "$ref": "#/$defs/hexColor"
+                },
+                "flareWhite": {
+                  "$ref": "#/$defs/hexColor"
+                }
+              }
+            },
+            "usage": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "primaryLockup",
+                "iconOnly",
+                "clearSpace",
+                "backgrounds"
+              ],
+              "properties": {
+                "primaryLockup": {
+                  "type": "string"
+                },
+                "iconOnly": {
+                  "type": "string"
+                },
+                "clearSpace": {
+                  "type": "string"
+                },
+                "backgrounds": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "foundation",
+            "text",
+            "accent",
+            "semantic",
+            "chart",
+            "gradients",
+            "lightMode"
+          ],
+          "properties": {
+            "foundation": {
+              "$ref": "#/$defs/foundationColors"
+            },
+            "text": {
+              "$ref": "#/$defs/textColors"
+            },
+            "accent": {
+              "$ref": "#/$defs/accentColors"
+            },
+            "semantic": {
+              "$ref": "#/$defs/semanticColors"
+            },
+            "chart": {
+              "$ref": "#/$defs/chartColors"
+            },
+            "gradients": {
+              "$ref": "#/$defs/gradientColors"
+            },
+            "lightMode": {
+              "$ref": "#/$defs/lightModeColors"
+            }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "philosophy",
+            "fontFamily",
+            "scale"
+          ],
+          "properties": {
+            "philosophy": {
+              "type": "string"
+            },
+            "fontFamily": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "primary",
+                "mono"
+              ],
+              "properties": {
+                "primary": {
+                  "type": "string"
+                },
+                "mono": {
+                  "type": "string"
+                }
+              }
+            },
+            "scale": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "heroHeading",
+                "sectionHeading",
+                "cardHeading",
+                "body",
+                "label",
+                "metric",
+                "metricLabel"
+              ],
+              "properties": {
+                "heroHeading": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "sectionHeading": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "cardHeading": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "body": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "label": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "metric": {
+                  "$ref": "#/$defs/typographyToken"
+                },
+                "metricLabel": {
+                  "$ref": "#/$defs/typographyToken"
+                }
+              }
+            }
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unit",
+            "sectionPadding",
+            "cardPadding",
+            "cardGap",
+            "componentGap"
+          ],
+          "properties": {
+            "unit": {
+              "type": "string"
+            },
+            "sectionPadding": {
+              "type": "string"
+            },
+            "cardPadding": {
+              "type": "string"
+            },
+            "cardGap": {
+              "type": "string"
+            },
+            "componentGap": {
+              "type": "string"
+            }
+          }
+        },
+        "borderRadius": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "small",
+            "medium",
+            "large",
+            "pill",
+            "card"
+          ],
+          "properties": {
+            "small": {
+              "type": "string"
+            },
+            "medium": {
+              "type": "string"
+            },
+            "large": {
+              "type": "string"
+            },
+            "pill": {
+              "type": "string"
+            },
+            "card": {
+              "type": "string"
+            }
+          }
+        },
+        "shadows": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "card",
+            "elevated",
+            "glow"
+          ],
+          "properties": {
+            "card": {
+              "type": "string"
+            },
+            "elevated": {
+              "type": "string"
+            },
+            "glow": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "uiPatterns": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "theming",
+        "navigation",
+        "dashboardCards",
+        "statBadges",
+        "tables",
+        "buttons",
+        "charts",
+        "searchBar"
+      ],
+      "properties": {
+        "theming": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "defaultMode",
+            "persistenceKey",
+            "darkMode",
+            "lightMode",
+            "systemFallback"
+          ],
+          "properties": {
+            "defaultMode": {
+              "type": "string"
+            },
+            "persistenceKey": {
+              "type": "string"
+            },
+            "darkMode": {
+              "type": "string"
+            },
+            "lightMode": {
+              "type": "string"
+            },
+            "systemFallback": {
+              "type": "string"
+            }
+          }
+        },
+        "navigation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style",
+            "sidebarSections",
+            "selectedState"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "sidebarSections": {
+              "$ref": "#/$defs/stringArray"
+            },
+            "selectedState": {
+              "type": "string"
+            }
+          }
+        },
+        "dashboardCards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style",
+            "layout"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "layout": {
+              "type": "string"
+            }
+          }
+        },
+        "statBadges": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            }
+          }
+        },
+        "tables": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style",
+            "headerStyle"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "headerStyle": {
+              "type": "string"
+            }
+          }
+        },
+        "buttons": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "primary",
+            "secondary",
+            "cta"
+          ],
+          "properties": {
+            "primary": {
+              "type": "string"
+            },
+            "secondary": {
+              "type": "string"
+            },
+            "cta": {
+              "type": "string"
+            }
+          }
+        },
+        "charts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style",
+            "funnelBars"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            },
+            "funnelBars": {
+              "type": "string"
+            }
+          }
+        },
+        "searchBar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "style"
+          ],
+          "properties": {
+            "style": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "personality",
+        "tone",
+        "writingPrinciples",
+        "keyPhrases",
+        "avoidances"
+      ],
+      "properties": {
+        "personality": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "tone": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "marketing",
+            "product",
+            "support"
+          ],
+          "properties": {
+            "marketing": {
+              "type": "string"
+            },
+            "product": {
+              "type": "string"
+            },
+            "support": {
+              "type": "string"
+            }
+          }
+        },
+        "writingPrinciples": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "keyPhrases": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "avoidances": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "dataAndMetrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "keyStats",
+        "dashboardKPIs",
+        "teamMetrics"
+      ],
+      "properties": {
+        "keyStats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "timeSaved",
+            "roiProven"
+          ],
+          "properties": {
+            "timeSaved": {
+              "type": "string"
+            },
+            "roiProven": {
+              "type": "boolean"
+            }
+          }
+        },
+        "dashboardKPIs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "teamMetrics": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commitment",
+        "description"
+      ],
+      "properties": {
+        "commitment": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$"
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "colorToken": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hex",
+        "role"
+      ],
+      "properties": {
+        "hex": {
+          "$ref": "#/$defs/hexColor"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "typographyToken": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "size",
+        "weight",
+        "lineHeight"
+      ],
+      "properties": {
+        "size": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "lineHeight": {
+          "type": "number"
+        },
+        "letterSpacing": {
+          "type": "string"
+        },
+        "textTransform": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        }
+      }
+    },
+    "foundationColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "background",
+        "surface",
+        "surfaceElevated",
+        "border",
+        "borderLight"
+      ],
+      "properties": {
+        "background": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "surface": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "surfaceElevated": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "border": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "borderLight": {
+          "$ref": "#/$defs/colorToken"
+        }
+      }
+    },
+    "textColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "secondary",
+        "muted"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "secondary": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "muted": {
+          "$ref": "#/$defs/colorToken"
+        }
+      }
+    },
+    "accentColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "primaryHover",
+        "teal",
+        "cyan"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "primaryHover": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "teal": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "cyan": {
+          "$ref": "#/$defs/colorToken"
+        }
+      }
+    },
+    "semanticColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "success",
+        "warning",
+        "error",
+        "info"
+      ],
+      "properties": {
+        "success": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "warning": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "error": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "info": {
+          "$ref": "#/$defs/colorToken"
+        }
+      }
+    },
+    "chartColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lineGreen",
+        "lineCyan",
+        "areaFill",
+        "pipelineBlue"
+      ],
+      "properties": {
+        "lineGreen": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "lineCyan": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "areaFill": {
+          "$ref": "#/$defs/colorToken"
+        },
+        "pipelineBlue": {
+          "$ref": "#/$defs/colorToken"
+        }
+      }
+    },
+    "gradientColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "heroGlow",
+        "cardShine",
+        "ctaButton"
+      ],
+      "properties": {
+        "heroGlow": {
+          "type": "string"
+        },
+        "cardShine": {
+          "type": "string"
+        },
+        "ctaButton": {
+          "type": "string"
+        }
+      }
+    },
+    "lightModeColors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "foundation",
+        "text",
+        "gradients",
+        "shadows"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "foundation": {
+          "$ref": "#/$defs/foundationColors"
+        },
+        "text": {
+          "$ref": "#/$defs/textColors"
+        },
+        "gradients": {
+          "$ref": "#/$defs/gradientColors"
+        },
+        "shadows": {
+          "$ref": "#/$defs/shadowGroup"
+        }
+      }
+    },
+    "shadowGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card",
+        "elevated",
+        "glow"
+      ],
+      "properties": {
+        "card": {
+          "type": "string"
+        },
+        "elevated": {
+          "type": "string"
+        },
+        "glow": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
