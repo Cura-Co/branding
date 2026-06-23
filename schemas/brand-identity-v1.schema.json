@@ -213,11 +213,16 @@
               "type": "object",
               "additionalProperties": false,
               "required": [
-                "darkVariant"
+                "darkVariant",
+                "downloadUrl"
               ],
               "properties": {
                 "darkVariant": {
                   "type": "string"
+                },
+                "downloadUrl": {
+                  "type": "string",
+                  "format": "uri"
                 }
               }
             },

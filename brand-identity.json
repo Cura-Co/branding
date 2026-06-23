@@ -69,7 +69,8 @@
       "wordmark": "CURA",
       "wordmarkStyle": "Uppercase, bold sans-serif with a blue gradient fill matching the icon. Letters are tightly tracked with a clean, solid presence.",
       "files": {
-        "darkVariant": "cura-logo-dark-Bjrh0FR_.webp"
+        "darkVariant": "cura-logo-dark-Bjrh0FR_.webp",
+        "downloadUrl": "https://cura-co.github.io/branding/cura-logo-dark-Bjrh0FR_.webp"
       },
       "colorProfile": {
         "primaryBlue": "#1E5FAE",
